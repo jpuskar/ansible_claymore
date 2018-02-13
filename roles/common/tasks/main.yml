@@ -1,0 +1,24 @@
+---
+- name: add miner group
+  group:
+    name: miner
+    state: present
+- name: add miner user
+  user:
+    name: miner
+    state: present
+    shell: /bin/bash
+    groups: miner, video
+    append: yes
+- name: Install unzip
+  apt:
+    name: unzip
+- name: Install xz-utils
+  apt:
+    name: xz-utils
+- name: Install python-pip
+  apt:
+    name: python-pip
+- name: Install pexpect
+  pip:
+    name: pexpect

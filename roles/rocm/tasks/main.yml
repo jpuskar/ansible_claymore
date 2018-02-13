@@ -1,0 +1,35 @@
+
+- name: Add ROCm repo key
+  apt_key:
+    url: http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key
+    state: present
+
+- name: Add ROCm repo
+  apt_repository:
+    repo: deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main
+    state: present
+
+- name: Install deps
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - gcc
+    - libnuma-dev
+    - rocm-dkms
+    - rocm-opencl
+    - rocm-opencl-dev
+    - rocm-dev
+    - rocm-amdgpu-pro
+- name: Create /etc/profile.d/amdgpu-pro.sh
+  shell: touch /etc/profile.d/amdgpu-pro.sh
+  args:
+    creates: /etc/profile.d/amdgpu-pro.sh
+- name: Chmod /etc/profile.d/amdgpu-pro.sh
+  file:
+    path: /etc/profile.d/amdgpu-pro.sh
+    mode: 0644
+- name: Add ROCm environment variables to /etc/profile.d/amdgpu-pro.sh
+  lineinfile:
+    path: /etc/profile.d/amdgpu-pro.sh
+    line: 'export LLVM_BIN=/opt/amdgpu-pro/bin'

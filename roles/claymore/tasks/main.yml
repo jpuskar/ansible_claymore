@@ -1,0 +1,10 @@
+---
+- name: create claymore download directory
+  file:
+    path: /root/claymore_v10.0
+    state: directory
+- name: download and extract claymore
+  unarchive:
+    src: https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v10.0/Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v10.0.-.LINUX.tar.gz
+    dest: /root/claymore_v10.0
+    remote_src: yes
