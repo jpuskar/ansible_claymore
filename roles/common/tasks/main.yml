@@ -22,3 +22,12 @@
 - name: Install pexpect
   pip:
     name: pexpect
+- name: install ukuu repo
+  apt_repository:
+    repo: 'ppa:teejee2008/ppa'
+- name: install ukuu
+  apt:
+    name: ukuu
+- name: install libelf-dev for AMDGPU-PRO
+  apt:
+    name: libelf-dev

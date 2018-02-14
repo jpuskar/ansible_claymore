@@ -1,38 +1,25 @@
 ---
-#- name: download APDGPU-PRO 17.40
-#  get_url:
-#    url: https://www2.ati.com/drivers/linux/beta/ubuntu/amdgpu-pro-17.40-483984.tar.xz
-#    dest: /root/amdgpu-pro-17.40-483984.tar.xz
-#    mode: 0644
-#- name: create driver folder
-#  file:
-#    path: /root/amdgpu-pro-17.40-483984
-#    state: directory
-#- name: Download AMDGPU-PRO 17.40
-#  get_url:
-#    url: https://www2.ati.com/drivers/linux/beta/ubuntu/amdgpu-pro-17.40-483984.tar.xz
-#    dest: /root/amdgpu-pro-17.40-483984.tar.xz
-#    mode: 0644
-#- name: Extract AMDGPU-PRO 17.40
-#  shell: tar -xvf /root/amdgpu-pro-17.40-483984.tar.xz /root/amdgpu-pro-17.40-483984
-- name: extract driver
-  unarchive:
-    src: /root/amdgpu-pro-17.40-483984.tar.xz
-    dest: /root
-    remote_src: yes
-- name: install amdgpu-pro-install
-  expect:
-    command: /root/amdgpu-pro-17.40-492261/amdgpu-pro-install
-    responses:
-      (?i)continue: "Y"
-  args:
-    creates: "/opt/amdgpu-pro"
-- name: enable large page support
-  lineinfile:
-    path: /etc/default/grub
-    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
-    line: 'GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.vm_fragment_size=9"'
-  register: amdgpu_large_page
-- name: update grub
-  shell: update-grub
-  when: amdgpu_large_page.changed
+#- name: extract driver
+#  unarchive:
+#    src: /root/amdgpu-pro-17.50-511655.tar.xz
+#    dest: /root
+#    remote_src: yes
+#- name: install amdgpu-pro-install
+#  expect:
+#    command: /root/amdgpu-pro-17.50-511655/amdgpu-pro-install --opencl=legacy,rocm --headless -y
+#    responses:
+#      (?i)continue: "Y"
+#  args:
+#    creates: "/opt/amdgpu-pro"
+#- name: enable large page support
+#  lineinfile:
+#    path: /etc/default/grub
+#    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+#    line: 'GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.vm_fragment_size=9"'
+#  register: amdgpu_large_page
+#- name: update grub
+#  shell: update-grub
+#  when: amdgpu_large_page.changed
+#- name: install clinfo
+#  apt:
+#    name: clinfo

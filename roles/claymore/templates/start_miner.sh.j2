@@ -1,0 +1,7 @@
+#!/bin/sh
+export GPU_FORCE_64BIT_PTR=1
+export GPU_MAX_HEAP_SIZE=100
+export GPU_USE_SYNC_OBJECTS=1
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+./ethdcrminer64 -epool eth-us-east1.nanopool.org:9999 -ewal {{ wallet_address }}.{{ miner_name }}/{{ wallet_email }} -epsw x -mode 1 -ftime 10

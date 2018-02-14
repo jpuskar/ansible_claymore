@@ -1,40 +1,42 @@
 Role Name
 =========
 
-Configures AMD ROCm and Claymore.
+Configures AMDGPU-PRO, ROCm, and Claymore for Ubuntu.
+
 
 Requirements
 ------------
 
-Python
-Pre-stage amdgpu-pro-17.40-483984.tar.xz at /root.
-Secure-boot disabled.
+- Python installed.
+- Pre-stage amdgpu-pro-17.40-483984.tar.xz at /root.
+- Secure-boot must be disabled.
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- wallet_address
+- wallet_email
+- miner_name
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+TODO
+----
 
-Example Playbook
-----------------
+- LUKS
+- DoD STIGS
+- ssh lockdown & keys
+- apparmor
+- systemd unit file for claymore
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
 
 License
 -------
 
-BSD
+GPL
+
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+https://github.com/jpuskar/ansible_claymore

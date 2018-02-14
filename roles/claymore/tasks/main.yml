@@ -1,10 +1,46 @@
 ---
+- include_vars: wallet_vars.yml
 - name: create claymore download directory
   file:
-    path: /root/claymore_v10.0
+    path: /opt/claymore_v10.0
     state: directory
+    mode: 0755
+    owner: miner
+    group: miner
 - name: download and extract claymore
   unarchive:
     src: https://github.com/nanopool/Claymore-Dual-Miner/releases/download/v10.0/Claymore.s.Dual.Ethereum.Decred_Siacoin_Lbry_Pascal.AMD.NVIDIA.GPU.Miner.v10.0.-.LINUX.tar.gz
-    dest: /root/claymore_v10.0
+    dest: /opt/claymore_v10.0
     remote_src: yes
+    owner: miner
+    group: miner
+    mode: 0755
+    creates: /opt/claymore_v10.0/ethdcrminer64
+- name: chown claymore directory
+  file:
+    path: /opt/claymore_v10.0
+    state: directory
+    owner: miner
+    group: miner
+    mode: 0755
+    recurse: yes
+- name: set claymore binary file attributes
+  file:
+    path: /opt/claymore_v10.0/ethdcrminer64
+    mode: 0755
+    owner: miner
+    group: miner
+- name: add claymore startup file
+  template:
+    src: templates/start_miner.sh.j2
+    dest: /opt/claymore_v10.0/start_miner.sh
+    owner: miner
+    group: miner
+    mode: 0755
+- name: add claymore epools file
+  template:
+    src: templates/epools.txt.j2
+    dest: /opt/claymore_v10.0/epools.txt
+    owner: miner
+    group: miner
+    mode: 0644

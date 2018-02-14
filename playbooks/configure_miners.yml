@@ -6,3 +6,4 @@
     - role: amdgpu-pro
     - role: rocm
     - role: claymore
+#    - role: ansible-hardening
