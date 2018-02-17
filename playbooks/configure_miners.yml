@@ -4,7 +4,7 @@
   roles:
     - role: common
     - role: kernel
-#    - role: amdgpu-pro
+    - role: amdgpu-pro
+    - role: claymore
 #    - role: rocm
-#    - role: claymore
 #    - role: ansible-hardening

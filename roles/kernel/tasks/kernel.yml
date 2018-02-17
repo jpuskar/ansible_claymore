@@ -2,13 +2,16 @@
 - name: install ukuu repo
   apt_repository:
     repo: 'ppa:teejee2008/ppa'
+
 - name: install ukuu
   apt:
     name: ukuu
+
 - name: list installed kernels
-  shell: "ukuu --list | grep Installed || true"
+  shell: ukuu --list | grep 'Installed\|Running' | grep -iv Running\ kernel
   register: install_kernel
   changed_when: false
+
 - name: install needed kernel
   shell: "ukuu --install \"{{ kernel_version }}\""
   when: "not install_kernel.stdout|search(kernel_version)"

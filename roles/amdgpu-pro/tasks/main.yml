@@ -1,29 +1,34 @@
 ---
+- include_vars: amdgpu_vars.yml
+
 - name: install libelf-dev for AMDGPU-PRO
   apt:
     name: libelf-dev
 
-#- name: extract driver
-#  unarchive:
-#    src: /root/amdgpu-pro-17.50-511655.tar.xz
-#    dest: /root
-#    remote_src: yes
+- name: extract driver
+  unarchive:
+    src: "{{ amdgpu_driver_file }}"
+    dest: /root
+    remote_src: yes
+
 #- name: install amdgpu-pro-install
 #  expect:
 #    command: /root/amdgpu-pro-17.50-511655/amdgpu-pro-install --opencl=legacy,rocm --headless -y
 #    responses:
 #      (?i)continue: "Y"
-#  args:
-#    creates: "/opt/amdgpu-pro"
-#- name: enable large page support
-#  lineinfile:
-#    path: /etc/default/grub
-#    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
-#    line: 'GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.vm_fragment_size=9"'
-#  register: amdgpu_large_page
-#- name: update grub
-#  shell: update-grub
-#  when: amdgpu_large_page.changed
-#- name: install clinfo
-#  apt:
-#    name: clinfo
+
+- name: install amdgpu-pro
+  shell: "{{ amdgpu_driver_installer_file }} --compute -y"
+  args:
+    creates: "/opt/amdgpu-pro"
+
+- name: enable large page support
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.vm_fragment_size=9"'
+  register: amdgpu_large_page
+
+- name: update grub
+  shell: update-grub
+  when: amdgpu_large_page.changed
