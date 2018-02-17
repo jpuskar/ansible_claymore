@@ -1,4 +1,8 @@
 ---
+- name: install libelf-dev for AMDGPU-PRO
+  apt:
+    name: libelf-dev
+
 #- name: extract driver
 #  unarchive:
 #    src: /root/amdgpu-pro-17.50-511655.tar.xz

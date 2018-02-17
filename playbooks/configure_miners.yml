@@ -3,7 +3,8 @@
   hosts: miners
   roles:
     - role: common
-    - role: amdgpu-pro
-    - role: rocm
-    - role: claymore
+    - role: kernel
+#    - role: amdgpu-pro
+#    - role: rocm
+#    - role: claymore
 #    - role: ansible-hardening

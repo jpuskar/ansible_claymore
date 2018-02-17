@@ -1,0 +1,22 @@
+---
+- include_vars: kernel_vars.yml
+- name: install ukuu repo
+  apt_repository:
+    repo: 'ppa:teejee2008/ppa'
+- name: install ukuu
+  apt:
+    name: ukuu
+- name: list installed kernels
+  shell: "ukuu --list | grep Installed"
+  register: install_kernel
+  changed_when: false
+- name: install needed kernel
+  shell: "ukuu --install \"{{ kernel_version }}\""
+  when: "not install_kernel.stdout|search(kernel_version)"
+  register: install_needed_kernel
+- name: set grub default
+  shell: "grub-set-default \"{{ grub_default }}\""
+  when: install_needed_kernel.changed
+- name: update grub
+  shell: "update-grub"
+  when: install_needed_kernel.changed

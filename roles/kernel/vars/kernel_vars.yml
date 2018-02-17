@@ -1,0 +1,3 @@
+---
+kernel_version: 'v4.10.17'
+grub_default: 'Ubuntu, with Linux 4.10.17-041017-generic'
