@@ -1,0 +1,25 @@
+---
+- name: set grub default menu option to saved
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_DEFAULT='
+    line: 'GRUB_DEFAULT=saved'
+  register: default_menu_option
+
+- name: update grub
+  shell: "update-grub"
+  when: default_menu_option.changed
+
+- name: get current grub saved default
+  shell: "grub-editenv list"
+  changed_when: false
+  register: default_grub_entry
+
+- name: set grub default
+  shell: "grub-set-default \"{{ grub_default }}\""
+  when: "default_grub_entry.stdout != ('saved_entry=' + grub_default)"
+  register: set_grub_default
+
+- name: update grub
+  shell: "update-grub"
+  when: set_grub_default.changed
