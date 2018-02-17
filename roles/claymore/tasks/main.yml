@@ -35,12 +35,12 @@
 #    group: miner
 #    mode: 0644
 #    recurse: yes
-#- name: set claymore binary file attributes
-#  file:
-#    path: /opt/claymore_v10.0/ethdcrminer64
-#    mode: 0755
-#    owner: miner
-#    group: miner
+- name: set claymore binary file attributes
+  file:
+    path: /opt/claymore_v10.0/ethdcrminer64
+    mode: 0755
+    owner: miner
+    group: miner
 - name: add claymore startup file
   template:
     src: templates/start_miner.sh.j2
