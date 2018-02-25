@@ -20,6 +20,13 @@ Role Variables
 - miner_name
 
 
+Misc
+----
+
+Show cpu clock speed (amd) on GPU #6.
+```/sys/kernel/debug/dri/6/amdgpu_pm_info```
+
+
 TODO
 ----
 

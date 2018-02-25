@@ -3,7 +3,7 @@
   hosts: miners
   roles:
     - role: common
-    - role: kernel
+#    - role: kernel
     - role: amdgpu-pro
     - role: claymore
 #    - role: rocm

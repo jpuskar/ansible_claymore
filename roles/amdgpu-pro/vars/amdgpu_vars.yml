@@ -1,3 +1,5 @@
 ---
-amdgpu_driver_file: '/root/amdgpu-pro-17.40-483984.tar.xz'
-amdgpu_driver_installer_file: '/root/amdgpu-pro-17.40-483984/amdgpu-pro-install'
+#amdgpu_driver_file: '/root/amdgpu-pro-17.40-483984.tar.xz'
+#amdgpu_driver_installer_file: '/root/amdgpu-pro-17.40-483984/amdgpu-pro-install'
+amdgpu_driver_file: '/root/amdgpu-pro-17.50-511655.tar.xz'
+amdgpu_driver_installer_file: '/root/amdgpu-pro-17.50-511655/amdgpu-pro-install'
