@@ -1,0 +1,23 @@
+---
+#- name: install build prereqs
+#  apt:
+#    name: "{{ item }}"
+#  with_items:
+#    - "libmicrohttpd-dev"
+#    - "libssl-dev"
+#    - "cmake"
+#    - "build-essential"
+#    - "libhwloc-dev"
+#    - "screen"
+#    - "git"
+
+- name: clone xmr-stak repo
+  git:
+    repo: 'https://github.com/fireice-uk/xmr-stak'
+    dest: /root/xmr-stak
+    refspec:
+    version: "26a5d65f12b2f19a0a3ece39a2bc64718796367b"
+
+- name: configure docker
+  include_role:
+    name: docker

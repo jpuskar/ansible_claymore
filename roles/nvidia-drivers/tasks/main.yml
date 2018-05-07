@@ -1,0 +1,4 @@
+---
+- name: install nvidia-384
+  apt:
+    name: nvidia-384

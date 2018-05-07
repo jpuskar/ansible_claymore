@@ -1,10 +1,26 @@
 ---
 - name: configure miners
   hosts: miners
+  become: yes
   roles:
     - role: common
-#    - role: kernel
-    - role: amdgpu-pro
-    - role: claymore
-#    - role: rocm
-#    - role: ansible-hardening
+  tasks:
+    - name: configure amd
+      include_role:
+        name: "amdgpu-pro"
+      when: amd == 'true'
+
+    - name: configure nvidia
+      include_role:
+        name: "nvidia-drivers"
+      when: nvidia == 'true'
+
+    - name: configure claymore
+      include_role:
+        name: "claymore"
+      when: claymore == 'true'
+
+    - name: configure monero
+      include_role:
+        name: "monero"
+      when: monero == 'true'
