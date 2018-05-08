@@ -1,2 +1,4 @@
 .idea/
 *.retry
+.vagrant/
+vault_password

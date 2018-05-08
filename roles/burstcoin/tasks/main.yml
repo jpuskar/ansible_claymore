@@ -1,0 +1,17 @@
+---
+#- name: install burstcoin prereqs
+#  apt:
+#    name: "{{ item }}"
+#  with_items:
+#    - "openjdk-9-jre"
+#    - "make"
+#    - "gcc"
+
+- name: configure docker
+  include_role:
+    name: docker
+
+- name: docker pull jertel/omdcct
+  shell:
+    cmd: 'docker pull jertel/omdcct'
+

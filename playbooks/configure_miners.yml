@@ -24,3 +24,8 @@
       include_role:
         name: "monero"
       when: monero == 'true'
+
+    - name: configure burst
+      include_role:
+        name: "burstcoin"
+      when: burst == 'true'
