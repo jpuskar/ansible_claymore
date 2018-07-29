@@ -8,6 +8,6 @@
   mount:
     src: '/dev/sdb1'
     fstype: 'ext4'
-    opyions: 'defaults'
+    opts: 'defaults'
     path: '/media/plots/plot1'
     state: 'mounted'
