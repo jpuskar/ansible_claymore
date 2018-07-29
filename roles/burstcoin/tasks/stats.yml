@@ -1,0 +1,12 @@
+---
+- name: stats | install sysstat
+  apt:
+    name: 'sysstat'
+    state: 'present'
+    update_cache: yes
+
+- name: stats | install iotop
+  apt:
+    name: 'iotop'
+    state: 'present'
+    update_cache: yes

@@ -1,5 +1,5 @@
 ---
-- name: docker pull jertel/omdcct
+- name: plotter | docker pull jertel/omdcct
   shell:
     cmd: 'docker pull jertel/omdcct'
 

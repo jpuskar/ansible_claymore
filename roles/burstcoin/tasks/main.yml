@@ -11,21 +11,11 @@
   include_role:
     name: docker
 
-- name: include plotter.yml
-  include_tasks: plotter.yml
+- name: include stats tasks
+  include_tasks: stats.yml
 
-- name: include miner.yml
-  include_tasks: miner.yml
+#- name: include plotter tasks
+#  include_tasks: plotter.yml
 
-- name: Install sysstat
-  apt:
-    pkg: sysstat
-    state: latest
-    update_cache: yes
-
-- name: Install iotop
-  apt:
-    pkg: iotop
-    state: latest
-    update_cache: yes
-
+- name: include container tasks
+  include_tasks: container.yml
