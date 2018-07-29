@@ -11,9 +11,11 @@
   include_role:
     name: docker
 
-- name: docker pull jertel/omdcct
-  shell:
-    cmd: 'docker pull jertel/omdcct'
+- name: include plotter.yml
+  include_tasks: plotter.yml
+
+- name: include miner.yml
+  include_tasks: miner.yml
 
 - name: Install sysstat
   apt:
@@ -27,9 +29,3 @@
     state: latest
     update_cache: yes
 
-# TODO: make sure external is mounted
-# udev rules for persistent naming for USB
-# mount external to docker
-# git clone https://github.com/zurajm/burst-plotter  # the plotter
-# docker build that ^
-# instructions for plotting: docker run -it -v /media/plot:/mnt/burst <container id> -k <key> -d /mnt/burst/plots -x 1
