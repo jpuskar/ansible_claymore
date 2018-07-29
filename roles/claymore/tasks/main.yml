@@ -1,4 +1,9 @@
 ---
+- include_vars: wallet_vars.yml
+
+- name: include users tasks
+  include_tasks: users.yml
+
 - name: include install tasks
   include_tasks: install.yml
 

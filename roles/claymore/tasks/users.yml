@@ -1,0 +1,13 @@
+---
+- name: users | add miner group
+  group:
+    name: "{{ miner_group }}"
+    state: 'present'
+
+- name: users | add miner user
+  user:
+    name: "{{ miner_user }}"
+    state: 'present'
+    shell: '/bin/bash'
+    groups: 'miner,video'
+    append: 'yes'
