@@ -23,7 +23,7 @@
 - name: install | move claymore extracted files to install directory
   copy:
     remote_src: yes
-    src: "/tmp/claymore/{{ claymore_tar_foldername }}/*"
+    src: "/tmp/{{ claymore_tar_foldername }}/*"
     dest: '/opt/claymore/'
     owner: "{{ miner_user }}"
     group: "{{ miner_group }}"
