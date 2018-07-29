@@ -22,3 +22,9 @@
     mode: 0755
     owner: "{{ miner_user }}"
     group: "{{ miner_group }}"
+
+- name: systemd | enable claymore service
+  systemd:
+    name: 'claymore'
+    enabled: 'yes'
+    state: 'started'
