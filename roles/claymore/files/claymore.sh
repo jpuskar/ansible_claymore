@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #set -eo pipefail
 
 # starts or stops the claymore miner in a screen
