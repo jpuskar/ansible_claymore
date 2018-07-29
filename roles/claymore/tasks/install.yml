@@ -7,8 +7,8 @@
     remote_src: yes
     creates: "/tmp/{{ claymore_tar_foldername }}"
     mode: 0644
-#    owner: "{{ miner_user }}"
-#    group: "{{ miner_group }}"
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
 
 - name: install | set claymore binary file attributes
   file:
