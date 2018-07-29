@@ -6,7 +6,7 @@
     dest: '/tmp'
     remote_src: yes
     creates: "/tmp/{{ claymore_tar_foldername }}"
-    mode: 0644
+    mode: 0755
     owner: "{{ miner_user }}"
     group: "{{ miner_group }}"
 
