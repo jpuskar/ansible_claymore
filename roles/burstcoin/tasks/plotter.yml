@@ -1,0 +1,11 @@
+---
+- name: docker pull jertel/omdcct
+  shell:
+    cmd: 'docker pull jertel/omdcct'
+
+# TODO: make sure external is mounted
+# udev rules for persistent naming for USB
+# mount external to docker
+# git clone https://github.com/zurajm/burst-plotter  # the plotter
+# docker build that ^
+# instructions for plotting: docker run -it -v /media/plot:/mnt/burst <container id> -k <key> -d /mnt/burst/plots -x 1

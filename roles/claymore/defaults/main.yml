@@ -1,0 +1,6 @@
+---
+miner_group: 'miner'
+miner_user: 'miner'
+claymore_runtime_dir: 'claymore'
+claymore_pidfile_path: '/var/run/claymore/claymorescreen.pid'
+claymore_bin_path: '/opt/claymore'

@@ -1,0 +1,43 @@
+---
+#- name: install build prereqs
+#  apt:
+#    name: "{{ item }}"
+#  with_items:
+#    - "libmicrohttpd-dev"
+#    - "libssl-dev"
+#    - "cmake"
+#    - "build-essential"
+#    - "libhwloc-dev"
+#    - "screen"
+#    - "git"
+
+- name: clone xmr-stak repo
+  git:
+    repo: 'https://github.com/fireice-uk/xmr-stak'
+    dest: '/root/xmr-stak'
+    version: '26a5d65f12b2f19a0a3ece39a2bc64718796367b'
+
+- name: create monero config folder
+  file:
+    path: '/root/monero'
+    state: 'directory'
+
+- name: stage monero config.txt
+  template:
+    src: 'templates/config.txt.j2'
+    dest: '/root/monero/config.txt'
+
+- name: stage monero config.txt
+  template:
+    src: 'templates/pools.txt.j2'
+    dest: '/root/monero/pools.txt'
+
+- name: configure docker
+  include_role:
+    name: docker
+
+# TODO: docker run -d -it --name=xmrstack xmrstack
+# TODO: docker exec -it xmrstack /bin/bash
+# TODO: docker cp xkrstack:/mnt/config.txt ./
+# TODO: docker cp xkrstack:/mnt/pools.txt ./
+# TODO: docker cp xkrstack:/mnt/cpu.txt ./

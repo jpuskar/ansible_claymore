@@ -1,0 +1,43 @@
+---
+- name: install | download and extract claymore
+  unarchive:
+    src: "{{ claymore_download_url }}"
+    dest: '/tmp'
+    remote_src: yes
+    creates: "/tmp/{{ claymore_tar_foldername }}"
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+  register: unarchive_claymore
+
+- name: install | set claymore binary file attributes
+  file:
+    path: "/tmp/{{ claymore_tar_foldername }}/ethdcrminer64"
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+
+- name: install | create claymore install directory
+  file:
+    path: "{{ claymore_bin_path }}"
+    state: 'directory'
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+
+- name: install | move claymore extracted files to install directory
+  synchronize:
+    src: "/tmp/{{ claymore_tar_foldername }}/"
+    dest: '/opt/claymore/'
+    owner: yes
+    group: yes
+  delegate_to: "{{ inventory_hostname }}"
+  when: unarchive_claymore.changed
+
+- name: install | add claymore epools file
+  template:
+    src: 'templates/epools.txt.j2'
+    dest: "{{ claymore_bin_path }}/epools.txt"
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+    mode: 0644
