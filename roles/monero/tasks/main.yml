@@ -14,23 +14,23 @@
 - name: clone xmr-stak repo
   git:
     repo: 'https://github.com/fireice-uk/xmr-stak'
-    dest: /root/xmr-stak
-    version: "26a5d65f12b2f19a0a3ece39a2bc64718796367b"
+    dest: '/root/xmr-stak'
+    version: '26a5d65f12b2f19a0a3ece39a2bc64718796367b'
 
 - name: create monero config folder
   file:
-    path: "/root/monero"
-    state: "directory"
+    path: '/root/monero'
+    state: 'directory'
 
 - name: stage monero config.txt
   template:
-    src: "templates/config.txt.j2"
-    dest: "/root/monero/config.txt"
+    src: 'templates/config.txt.j2'
+    dest: '/root/monero/config.txt'
 
 - name: stage monero config.txt
   template:
-    src: "templates/pools.txt.j2"
-    dest: "/root/monero/pools.txt"
+    src: 'templates/pools.txt.j2'
+    dest: '/root/monero/pools.txt'
 
 - name: configure docker
   include_role:
