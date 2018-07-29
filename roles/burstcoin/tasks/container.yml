@@ -1,0 +1,26 @@
+---
+- name: container | search for existing container
+  shell:
+    cmd: 'docker ps -a --filter name=^/creepMiner'
+  register: docker_ps_filtered
+  changed_when: false
+  check_mode: no
+
+#- name: show docker_ps_filtered
+#  debug:
+#    var: docker_ps_filtered
+
+- name: container | create the docker creepMiner container
+  shell: >
+    docker create \
+      --name=creepMiner \
+      --restart=no \
+      -e TZ=America/NewYork \
+      -e AUTO_START=TRUE \
+      -p 8124:8124 \
+      -p 9001:9001 \
+      -p 9002:9002 \
+      -v /etc/creepMiner:/config:Z \
+      -v /media/plots/plot1/plots:/plot/01:Z \
+      whumphrey/creepminer
+  when: "'creepMiner' not in docker_ps_filtered.stdout"

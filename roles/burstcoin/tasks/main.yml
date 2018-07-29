@@ -1,31 +1,16 @@
 ---
-#- name: install burstcoin prereqs
-#  apt:
-#    name: "{{ item }}"
-#  with_items:
-#    - "openjdk-9-jre"
-#    - "make"
-#    - "gcc"
-
 - name: configure docker
   include_role:
     name: docker
 
-- name: include plotter.yml
-  include_tasks: plotter.yml
+- name: include stats tasks
+  include_tasks: stats.yml
 
-- name: include miner.yml
-  include_tasks: miner.yml
+- name: include mounts tasks
+  include_tasks: mounts.yml
 
-- name: Install sysstat
-  apt:
-    pkg: sysstat
-    state: latest
-    update_cache: yes
+#- name: include plotter tasks
+#  include_tasks: plotter.yml
 
-- name: Install iotop
-  apt:
-    pkg: iotop
-    state: latest
-    update_cache: yes
-
+- name: include container tasks
+  include_tasks: container.yml
