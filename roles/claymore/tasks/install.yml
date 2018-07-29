@@ -1,10 +1,11 @@
 ---
+
 - name: install | download and extract claymore
   unarchive:
     src: "{{ claymore_download_url }}"
-    dest: '/tmp/claymore'
+    dest: '/tmp'
     remote_src: yes
-    creates: '/tmp/claymore'
+    creates: "/tmp/{{ claymore_tar_foldername }}"
 #    owner: "{{ miner_user }}"
 #    group: "{{ miner_group }}"
 #    mode: 0644
