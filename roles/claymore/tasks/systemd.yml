@@ -12,7 +12,7 @@
 
 - name: systemd | install systemd claymore env file
   template:
-    src: 'claymore.env'
+    src: 'claymore.env.j2'
     dest: "{{ claymore_bin_path }}/claymore.env"
 
 - name: systemd | install claymore startup script
