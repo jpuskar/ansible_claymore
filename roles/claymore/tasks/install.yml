@@ -1,5 +1,4 @@
 ---
-
 - name: install | download and extract claymore
   unarchive:
     src: "{{ claymore_download_url }}"
@@ -9,6 +8,7 @@
     mode: 0755
     owner: "{{ miner_user }}"
     group: "{{ miner_group }}"
+  register: unarchive_claymore
 
 - name: install | set claymore binary file attributes
   file:
@@ -32,33 +32,7 @@
     owner: yes
     group: yes
   delegate_to: "{{ inventory_hostname }}"
-
-#- name: install | move claymore extracted files to install directory
-#  copy:
-#    remote_src: yes
-#    src: "/tmp/{{ claymore_tar_foldername }}/*"
-#    dest: '/opt/claymore/'
-#    owner: "{{ miner_user }}"
-#    group: "{{ miner_group }}"
-
-#  "{{ claymore_bin_path }}"
-
-#- name: chown claymore directory
-#  file:
-#    path: /opt/claymore_v10.0
-#    state: directory
-#    owner: miner
-#    group: miner
-#    mode: 0644
-#    recurse: yes
-
-#- name: add claymore startup file
-#  template:
-#    src: 'templates/start_miner.sh.j2'
-#    dest: "{{ claymore_bin_path }}/start_miner.sh"
-#    owner: "{{ miner_user }}"
-#    group: "{{ miner_group }}"
-#    mode: 0755
+  when: unarchive_claymore.changed
 
 - name: install | add claymore epools file
   template:
