@@ -20,12 +20,18 @@
     group: "{{ miner_group }}"
 
 - name: install | move claymore extracted files to install directory
-  copy:
-    remote_src: yes
+  synchronize:
     src: "/tmp/{{ claymore_tar_foldername }}/*"
     dest: '/opt/claymore/'
-    owner: "{{ miner_user }}"
-    group: "{{ miner_group }}"
+  delegate_to: "{{ inventory_hostname }}"
+
+#- name: install | move claymore extracted files to install directory
+#  copy:
+#    remote_src: yes
+#    src: "/tmp/{{ claymore_tar_foldername }}/*"
+#    dest: '/opt/claymore/'
+#    owner: "{{ miner_user }}"
+#    group: "{{ miner_group }}"
 
 #  "{{ claymore_bin_path }}"
 
