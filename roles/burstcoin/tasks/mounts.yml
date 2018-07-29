@@ -6,7 +6,7 @@
 
 - name: mount usb drive for creepminer
   mount:
-    src: '/dev/sdb1'
+    src: 'UUID="396dfbef-8640-4af3-a369-799bac693496"'
     fstype: 'ext4'
     opts: 'defaults,nofail,x-systemd.device-timeout=10'
     path: '/media/plots/plot1'
