@@ -14,13 +14,13 @@
   shell: >
     docker create \
       --name=creepMiner \
-      --restart=never \
+      --restart=no \
       -e TZ=America/NewYork \
       -e AUTO_START=TRUE \
       -p 8124:8124 \
       -p 9001:9001 \
       -p 9002:9002 \
       -v /etc/creepMiner:/config:Z \
-      -v /media/plot/plots:/plot/01:Z \
+      -v /media/plots/plot1/plots:/plot/01:Z \
       whumphrey/creepminer
   when: "'creepMiner' not in docker_ps_filtered.stdout"
