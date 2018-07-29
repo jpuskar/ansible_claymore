@@ -11,3 +11,10 @@
     shell: '/bin/bash'
     groups: 'miner,video'
     append: 'yes'
+
+- name: users | add miner user to sudoers
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/miner
+    validate: 'visudo -cf %s'
+    mode: 0440
