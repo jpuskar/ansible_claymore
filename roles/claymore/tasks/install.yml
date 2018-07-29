@@ -21,7 +21,7 @@
 
 - name: install | move claymore extracted files to install directory
   synchronize:
-    src: "/tmp/{{ claymore_tar_foldername }}/*"
+    src: "/tmp/{{ claymore_tar_foldername }}/"
     dest: '/opt/claymore/'
   delegate_to: "{{ inventory_hostname }}"
 
