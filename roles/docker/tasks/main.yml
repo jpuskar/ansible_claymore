@@ -2,16 +2,17 @@
 - name: install prereqs
   apt:
     name: "{{ item }}"
+    state: 'present
   with_items:
-    - "apt-transport-https"
-    - "ca-certificates"
-    - "curl"
-    - "software-properties-common"
+    - 'apt-transport-https'
+    - 'ca-certificates'
+    - 'curl'
+    - 'software-properties-common'
 - name: Add Docker apt key
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-    state: present
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    id: '9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+    state: 'present'
   register: add_repository_key
   ignore_errors: true
 
@@ -22,12 +23,12 @@
 
 - name: Install Docker apt package
   apt:
-    pkg: docker-ce
-    state: latest
-    update_cache: yes
+    name: 'docker-ce'
+    state: 'present'
+    update_cache: 'yes'
 
 - name: Ensure Docker service is installed and restarted
   service:
-    name: docker
-    state: restarted
-    enabled: yes
+    name: 'docker'
+    state: 'started'
+    enabled: 'yes'
