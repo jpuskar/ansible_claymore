@@ -1,0 +1,24 @@
+---
+- name: systemd | install systemd unit file
+  template:
+    src: 'claymore.service.j2'
+    dest: '/etc/systemd/system/claymore.service'
+  register: systemd_claymore_service_file
+
+- name: systemd | systemctl daemon-reload
+  shell:
+    cmd: 'systemctl daemon-reload'
+  when: systemd_claymore_service_file.changed
+
+- name: systemd | install systemd claymore env file
+  template:
+    src: 'claymore.env'
+    dest: "{{ claymore_bin_path }}/claymore.env"
+
+- name: systemd | install claymore startup script
+  copy:
+    src: 'claymore.sh'
+    dest: "{{ claymore_bin_path }}/claymore.sh"
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
