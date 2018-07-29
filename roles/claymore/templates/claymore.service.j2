@@ -23,6 +23,7 @@ After=network.target
 
 [Service]
 Type=forking
+RuntimeDirectory={{ claymore_runtime_dir }}
 PIDFile={{ claymore_pidfile_path }}
 User={{ miner_user }}
 Group={{ miner_group }}
