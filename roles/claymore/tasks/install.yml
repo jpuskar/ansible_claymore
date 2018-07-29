@@ -6,10 +6,16 @@
     dest: '/tmp'
     remote_src: yes
     creates: "/tmp/{{ claymore_tar_foldername }}"
+    mode: 0644
 #    owner: "{{ miner_user }}"
 #    group: "{{ miner_group }}"
-#    mode: 0644
-#    creates: "{{ claymore_bin_path }}/ethdcrminer64"
+
+- name: install | set claymore binary file attributes
+  file:
+    path: "/tmp/{{ claymore_tar_foldername }}/ethdcrminer64"
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
 
 - name: install | create claymore install directory
   file:
@@ -23,6 +29,8 @@
   synchronize:
     src: "/tmp/{{ claymore_tar_foldername }}/"
     dest: '/opt/claymore/'
+    owner: yes
+    group: yes
   delegate_to: "{{ inventory_hostname }}"
 
 #- name: install | move claymore extracted files to install directory
@@ -43,13 +51,6 @@
 #    group: miner
 #    mode: 0644
 #    recurse: yes
-
-- name: install | set claymore binary file attributes
-  file:
-    path: "{{ claymore_bin_path }}/ethdcrminer64"
-    mode: 0755
-    owner: "{{ miner_user }}"
-    group: "{{ miner_group }}"
 
 #- name: add claymore startup file
 #  template:
