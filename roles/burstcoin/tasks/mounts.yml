@@ -1,0 +1,13 @@
+---
+- name: create plot1 mount folder
+  file:
+    path: '/media/plots/plot1'
+    state: 'directory'
+
+- name: mount usb drive for creepminer
+  mount:
+    src: '/dev/sdb1'
+    fstype: 'ext4'
+    opyions: 'defaults'
+    path: '/media/plots/plot1'
+    state: 'mounted'

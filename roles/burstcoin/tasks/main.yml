@@ -1,18 +1,13 @@
 ---
-#- name: install burstcoin prereqs
-#  apt:
-#    name: "{{ item }}"
-#  with_items:
-#    - "openjdk-9-jre"
-#    - "make"
-#    - "gcc"
-
 - name: configure docker
   include_role:
     name: docker
 
 - name: include stats tasks
   include_tasks: stats.yml
+
+- name: include mounts tasks
+  include_tasks: mounts.yml
 
 #- name: include plotter tasks
 #  include_tasks: plotter.yml

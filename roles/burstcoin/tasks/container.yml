@@ -1,6 +1,7 @@
 ---
 - name: container | search for existing container
-  shell: 'docker ps -a --filter name=^/creepMiner'
+  shell:
+    cmd: 'docker ps -a --filter name=^/creepMiner'
   register: docker_ps_filtered
   changed_when: false
   check_mode: no
