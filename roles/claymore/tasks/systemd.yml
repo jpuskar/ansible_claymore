@@ -1,4 +1,12 @@
 ---
+- name: systemd | create claymore_pidfile_path
+  file:
+    state: directory
+    path: "{{ claymore_pidfile_path | dirname }}"
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+    mode: 0740
+
 - name: systemd | install systemd unit file
   template:
     src: 'claymore.service.j2'
@@ -13,12 +21,12 @@
 - name: systemd | install systemd claymore env file
   template:
     src: 'claymore.env.j2'
-    dest: "{{ claymore_bin_path }}/claymore.env"
+    dest: "{{ claymore_folder }}/claymore.env"
 
 - name: systemd | install claymore startup script
   copy:
     src: 'claymore.sh'
-    dest: "{{ claymore_bin_path }}/claymore.sh"
+    dest: "{{ claymore_folder }}/claymore.sh"
     mode: 0755
     owner: "{{ miner_user }}"
     group: "{{ miner_group }}"

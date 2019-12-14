@@ -23,14 +23,14 @@ After=network.target
 
 [Service]
 Type=forking
-RuntimeDirectory={{ claymore_runtime_dir }}
+RuntimeDirectory={{ claymore_folder }}
 PIDFile={{ claymore_pidfile_path }}
 User={{ miner_user }}
 Group={{ miner_group }}
 # WorkingDirectory=/root
-EnvironmentFile={{claymore_bin_path}}/claymore.env
-ExecStart={{ claymore_bin_path }}/claymore.sh start screen
-ExecStop={{ claymore_bin_path }}/claymore.sh stop
+EnvironmentFile={{claymore_folder}}/claymore.env
+ExecStart={{ claymore_folder }}/claymore.sh start screen
+ExecStop={{ claymore_folder }}/claymore.sh stop
 TimeoutStopSec=10
 Restart=on-success
 
