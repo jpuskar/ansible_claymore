@@ -1,0 +1,53 @@
+{
+  "pools": [
+    {
+      "user": "{{ wallet_address }}",
+      "url": "{{ pool_url }}",
+      "pass": "{{ pool_password }}",
+      "worker": "{{ miner_name }}"
+    }
+  ],
+  "coin" : "eth",
+  "worker" : "{{ miner_name }}",
+  "pci-indexing" : false,
+  "ab-indexing" : false,
+  "gpu-init-mode" : 0,
+  "keep-gpu-busy" : false,
+  "api-read-only" : true,
+  "kernel" : 0,
+  "api-bind-telnet": "0",
+  "api-bind-http": "0",
+  "json-response": true,
+  "retries": 3,
+  "retry-pause": 10,
+  "timeout": 300,
+  "algo": "ethash",
+  "dag-build-mode": 0,
+  "low-load": 0,
+  "hashrate-avr": 60,
+  "sharerate-avr": 600,
+  "gpu-report-interval": 30,
+  "log-path": "/var/log/t-rex.log",
+  "cpu-priority": 2,
+  "autoupdate": false,
+  "exit-on-cuda-error": true,
+  "exit-on-connection-lost": false,
+  "reconnect-on-fail-shares": 10,
+  "protocol-dump": false,
+  "no-color": false,
+  "hide-date": false,
+  "no-nvml": false,
+  "no-strict-ssl": false,
+  "no-hashrate-report": false,
+  "no-watchdog": false,
+  "quiet": false,
+  "time-limit": 0,
+  "temperature-color": "67,77",
+  "temperature-limit": 0,
+  "temperature-start": 0,
+  "back-to-main-pool-sec": 600,
+  "monitoring-page" : {
+     "graph_interval_sec" : 3600,
+     "update_timeout_sec" : 10
+  }
+}

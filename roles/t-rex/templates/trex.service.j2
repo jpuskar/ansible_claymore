@@ -1,0 +1,15 @@
+[Unit]
+Description=Trex miner
+After=network.target
+
+[Service]
+Type=simple
+RuntimeDirectory={{ trex_folder }}
+User={{ miner_user }}
+Group={{ miner_group }}
+ExecStart={{ trex_folder }}/t-rex --config "{{ trex_folder }}/config.json"
+TimeoutStopSec=10
+Restart=on-success
+
+[Install]
+WantedBy=multi-user.target

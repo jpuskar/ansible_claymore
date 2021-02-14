@@ -1,11 +1,10 @@
 ---
 - name: install utilities
   apt:
-    name: "{{ item }}"
-  with_items:
-    - 'unzip'
-    - 'xz-utils'
-    - 'python-pip'
+    name:
+      - 'unzip'
+      - 'xz-utils'
+      - 'python-pip'
 
 - name: install pexpect
   pip:

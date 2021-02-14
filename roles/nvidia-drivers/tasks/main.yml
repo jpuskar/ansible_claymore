@@ -1,4 +1,8 @@
 ---
-- name: install nvidia-384
+- name: install nvidia-driver-460
   apt:
-    name: nvidia-384
+    name: nvidia-driver-460
+
+- name: install nvidia-cuda-toolkit
+  apt:
+    name: nvidia-cuda-toolkit

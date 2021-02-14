@@ -1,6 +1,8 @@
 ---
-miner_group: 'miner'
-miner_user: 'miner'
 claymore_runtime_dir: 'claymore'
 claymore_pidfile_path: '/var/run/claymore/claymorescreen.pid'
 claymore_bin_path: '/opt/claymore'
+
+claymore_download_url: 'https://github.com/Claymore-Dual/Claymore-Dual-Miner/releases/download/15.0/Claymore.s.Dual.Ethereum.AMD+NVIDIA.GPU.Miner.v15.0.-.LINUX.zip'
+claymore_version: 15.0
+claymore_tar_foldername: "Claymore's Dual Ethereum AMD+NVIDIA GPU Miner v15.0 - LINUX"

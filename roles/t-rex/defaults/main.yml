@@ -1,0 +1,6 @@
+pool_url: 'stratum+tcp://us1.ethermine.org:4444'
+pool_password: 'x'
+trex_version: '0.19.11'
+trex_download_filename: 't-rex-0.19.11-linux-cuda11.1.tar.gz'
+trex_download_url: 'https://github.com/trexminer/T-Rex/releases/download/0.19.11/t-rex-0.19.11-linux-cuda11.1.tar.gz'
+trex_download_checksum: 'sha256:476208eff18d4066c7147d589ee3913c313bc0cb415d210dc463f71f47fad192'

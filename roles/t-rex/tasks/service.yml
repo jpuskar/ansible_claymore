@@ -1,0 +1,26 @@
+---
+- name: systemd | install systemd unit file
+  template:
+    src: 'trex.service.j2'
+    dest: '/etc/systemd/system/trex.service'
+  register: systemd_trex_service_file
+
+- name: systemd | systemctl daemon-reload
+  shell:
+    cmd: 'systemctl daemon-reload'
+  when: systemd_trex_service_file.changed
+
+- name: systemd | touch /var/log/t-rex.log
+  file:
+    state: touch
+    path: /var/log/t-rex.log
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+    mode: 0744
+
+- name: systemd | enable trex service
+  systemd:
+    name: 'trex'
+    enabled: 'yes'
+    state: 'started'
+

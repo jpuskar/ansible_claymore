@@ -20,6 +20,11 @@
         name: "claymore"
       when: claymore == 'true'
 
+    - name: configure t-rex
+      include_role:
+        name: "t-rex"
+      when: trex == 'true'
+
     - name: configure monero
       include_role:
         name: "monero"

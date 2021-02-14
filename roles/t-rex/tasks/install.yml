@@ -1,0 +1,48 @@
+---
+- name: install | assert variables
+  assert:
+    that:
+      - miner_name is defined
+      - miner_name is match('^[a-zA-Z0-9]{1}[a-zA-Z0-9-_].*$')
+      - wallet_address is defined
+
+- name: install | download t-rex
+  get_url:
+    url: "{{ trex_download_url }}"
+    dest: '/tmp/{{ trex_download_filename }}'
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+    checksum: "{{ trex_download_checksum }}"
+  register: dload_trex
+
+- name: install | set trex_folder fact
+  set_fact:
+    trex_folder: "/opt/trex_{{ trex_version }}"
+
+- name: install | create t-rex folder
+  file:
+    state: directory
+    path: "{{ trex_folder }}"
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+    mode: 0755
+
+- name: install | extract t-rex
+  unarchive:
+    src: '/tmp/{{ trex_download_filename }}'
+    dest: "{{ trex_folder }}"
+    remote_src: yes
+    creates: "{{ trex_folder }}/t-rex"
+    mode: 0755
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
+  register: unarchive_trex
+
+- name: install | render config.json
+  template:
+    src: config.json.j2
+    dest: "{{ trex_folder }}/config.json"
+    mode: 0644
+    owner: "{{ miner_user }}"
+    group: "{{ miner_group }}"
